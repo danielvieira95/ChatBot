@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+llama-index
+PyPDF2
+chromadb
+transformers
+huggingface_hub
