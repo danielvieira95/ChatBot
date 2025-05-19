@@ -1,0 +1,33 @@
+# --- Web API ---
+uvicorn==0.29.0
+
+# --- Leitura de PDF ---
+PyPDF2==3.0.1
+
+# --- Vetor de documentos / ChromaDB ---
+chromadb==0.4.24
+
+# --- Modelos HuggingFace ---
+huggingface-hub==0.22.2
+torch==2.5.1
+sentence-transformers==2.6.1
+#tokenizers==0.15.1
+tokenizers==0.15.2
+transformers==4.38.2
+
+# --- LLM com LlamaIndex e Groq ---
+llama-index==0.12.28
+llama-index-llms-groq==0.3.1
+llama-index-embeddings-huggingface==0.5.3
+
+# --- Pydantic compatível com core >=0.12
+pydantic==2.8.1
+
+# --- FastAPI compatível com pydantic 2.8+
+fastapi==0.111.0
+# --- Utilidades / dependências transitivas ---
+certifi==2024.2.2
+httpx==0.27.0
+#openai==1.18.0
+
+requests==2.31.0

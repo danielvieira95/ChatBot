@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+PyPDF2
+chromadb
+transformers
+huggingface_hub
+llama-index==0.10.39

@@ -1,0 +1,44 @@
+import subprocess
+import tempfile
+import os
+import sys
+
+# Lista de versões a testar
+packages = [
+    "llama-index==0.12.28",
+    "llama-index-llms-groq==0.3.1",
+    "llama-index-embeddings-huggingface==0.5.3",
+    "transformers==4.38.2",
+    "sentence-transformers==2.6.1",
+    "tokenizers==0.13.3",
+    "torch==2.5.1",
+    "pydantic==2.8.1",
+    "fastapi==0.111.0"
+]
+
+def test_packages(packages):
+    with tempfile.TemporaryDirectory() as temp_dir:
+        print(f"\n🧪 Criando ambiente virtual em: {temp_dir}")
+        subprocess.run([sys.executable, "-m", "venv", temp_dir], check=True)
+
+        pip_path = os.path.join(temp_dir, "bin", "pip") if os.name != "nt" else os.path.join(temp_dir, "Scripts", "pip.exe")
+
+        # Atualiza pip e tenta instalar os pacotes
+        print("📦 Instalando pacotes...")
+        result = subprocess.run([pip_path, "install", "--upgrade", "pip"], capture_output=True)
+        result = subprocess.run([pip_path, "install", *packages], capture_output=True, text=True)
+
+        if result.returncode != 0:
+            print("❌ Conflito detectado:")
+            print(result.stderr)
+        else:
+            print("✅ Instalação bem-sucedida! Rodando pip check...")
+            check = subprocess.run([pip_path, "check"], capture_output=True, text=True)
+            if check.returncode == 0:
+                print("✅ Nenhum conflito detectado. Tudo compatível! 🎉")
+            else:
+                print("⚠️ Conflito detectado no ambiente:")
+                print(check.stdout)
+
+if __name__ == "__main__":
+    test_packages(packages)

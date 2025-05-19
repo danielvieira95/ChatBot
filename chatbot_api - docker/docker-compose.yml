@@ -1,0 +1,17 @@
+
+services:
+  serenatto-api:
+    container_name: serenatto-api_vteste
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./documentos:/app/documentos
+    networks:
+      - rede-local
+
+networks:
+  rede-local:
+    driver: bridge
